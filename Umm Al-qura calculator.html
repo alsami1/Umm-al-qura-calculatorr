@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب نسبة الغياب - جامعة أم القرى</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: white;
+            color: #343a40;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #007bff;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .calculator {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: darkgray;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        #instructions {
+            text-align: right;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #instructions h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        #instructions p {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        .navbar {
+            background-color: black;
+            padding: 10px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .navbar ul li {
+            float: right;
+        }
+
+        .navbar ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar ul li a:hover {
+            background-color: lightgray;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <ul>
+        <li><a href="Umm Al-qura calculator.html">حاسبة نسبة الغياب</a></li>
+        <li><a href="index.html">الصفحة الرئيسية</a></li>
+    </ul>
+</div>
+
+    <div class="container">
+
+        <div class="calculator">
+            <h2>حاسبة نسبة الغياب</h2>
+            <div id="instructions">
+                <h3>: التعليمات</h3>
+                <p>قاعدة نسبة الغياب: عدد ساعات الغياب / عدد اجمالي الساعات * 100.</p>
+                <p>قم بادخال ساعات النظري على حدة والعملي على حدة</p>
+                <p>تنويه: في نهاية الفصل الدراسي يتم جمع غيابات النظري والعملي</p>
+				<p> ملاحظه : يتم حساب ساعات النظري بشكل منفصل عن ساعات العملي</p>
+            </div>
+            <form id="absenceForm">
+                <div class="form-group">
+                    <label for="courseType">:نوع المقرر</label>
+                    <select id="courseType" name="courseType" required>
+                        <option value="">اختر نوع المقرر</option>
+                        <option value="specialized">تخصصي</option>
+                        <option value="general">عام</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="weeklyHours">:عدد ساعات المقرر في الأسبوع</label>
+                    <input type="number" id="weeklyHours" name="weeklyHours" required>
+                </div>
+                <div class="form-group">
+                    <label for="excusedHours">:عدد ساعات الغياب بعذر</label>
+                    <input type="number" id="excusedHours" name="excusedHours" required>
+                </div>
+                <div class="form-group">
+                    <label for="unexcusedHours">:عدد ساعات الغياب بغير عذر</label>
+                    <input type="number" id="unexcusedHours" name="unexcusedHours" required>
+                </div>
+                <button type="submit">حساب النسبة</button>
+            </form>
+            <div id="result" class="result hidden">
+                <h3>: النتيجة</h3>
+                <p id="percentageResult"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        &copy; 2024 جميع الحقوق محفوظة
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('absenceForm');
+            const resultDiv = document.getElementById('result');
+            const percentageResult = document.getElementById('percentageResult');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const courseType = document.getElementById('courseType').value;
+                const weeklyHours = parseInt(document.getElementById('weeklyHours').value);
+                const excusedHours = parseInt(document.getElementById('excusedHours').value);
+                const unexcusedHours = parseInt(document.getElementById('unexcusedHours').value);
+
+                const totalWeeks = courseType === 'specialized' ? 11 : 10;
+                const totalHours = weeklyHours * totalWeeks;
+                const totalAbsences = excusedHours + unexcusedHours;
+                const absencePercentage = (totalAbsences / totalHours) * 100;
+
+                let message = `نسبة الغياب: %${absencePercentage.toFixed(2)}`;
+
+                if (unexcusedHours / totalHours > 0.15) {
+                    message += '<br>ملاحظة: نسبة الغياب بغير عذر تجاوزت الحد المسموح به - محروم';
+                } else {
+                    message += '<br>ملاحظة: نسبة الغياب بغير عذر ضمن الحدود المسموح بها - غير محروم';
+                }
+
+                if (excusedHours / totalHours > 0.25) {
+                    message += '<br>ملاحظة: نسبة الغياب بعذر تجاوزت الحد المسموح به - محروم';
+                } else {
+                    message += '<br>ملاحظة: نسبة الغياب بعذر ضمن الحدود المسموح بها - غير محروم';
+                }
+
+                percentageResult.innerHTML = message;
+                resultDiv.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
